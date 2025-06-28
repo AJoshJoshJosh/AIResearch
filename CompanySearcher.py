@@ -68,34 +68,26 @@ class FileConfig:
 # ======================
 class PromptTemplates:
     PERPLEXITY_SEARCH = (
-        "{company_name} upcoming building construction projects and programs in North America including retrofit programs. "
-        "Find the project start date, completion date, and the status of whether the project is finished. Include only references "
-        "to projects that are relevant now or in the future. If a project is finished, include that detail and be clear that it is finished. Do not speculate."
+        "{company_name} important data which reveals compelling buying events, important trends, etc. Be a good prompt engineer, here."
     )
     
     CHATGPT_ANALYSIS = """Do the following for {company_name}: Using the information from {perplexity_summary} only. 
 
-Summarize up to the five most relevant construction programs or projects this company is directly undertaking.
+Summarize up to the five most relevant trends, programs, or other compelling buying events for this company.
 
 Apply the following criteria strictly:
 
-Overall, we are looking to find companies that are building physical space for their own employees. Only include projects that apply.
+Overall, we are looking to find companies that are actually interested in products related to the problems described in the compelling buying event.
 
-1. Relevance to the Company: Only include building construction projects directly undertaken by this company for its own operations, 
-students, facilities, or strategic initiatives. Exclude general industry initiatives, government programs, or external projects 
-where the company is not the owner, developer, or primary beneficiary.
+1. Relevance to the Company: Only include certain types of events with XYZ criteria
 
-2. Alignment with Strategic Objectives: Focus on construction related to building space owned or directly operated by the company.
+2. Alignment with Strategic Objectives: Focus on these areas related to our product
 
-3. Stage of Construction:
+3. Specific criteria about the compelling buying events ....
 
-    • Prioritize pre-bid or early-phase projects that suggest future work, which end in 2026 or 2027 or later.
-    • Projects in the bidding phase should increase the likelihood of relevance.
+4. Roll up individual events into patterns with these criteria
 
-4. Unified Programs: Roll up individual projects into unified programs when applicable (e.g., multiple sites across a region).
-
-5. Size and Scale: Highlight projects with significant planned square footage, budget, or a large aggregate size if multiple small 
-projects combine to create substantial output.
+5. Size and Scale: Define top and bottom limits to the kinds of things we're interested in.
 
 Response Format:
 
@@ -103,36 +95,23 @@ For each relevant program or project, provide:
 
     • Name
     • 2-sentence description
-    • Start date
-    • End date
-    • Planned square footage / size
-    • Planned budget
-    • General contractor
-    • Electrical engineer (if selected)
-
-Check if the projects are the same, and combine them if they are.
+    • Component 1, 2, etc.
 
 Scoring:
 
-Assign a score from 1 to 5 to each project based on the following:
+Assign a score from 1 to 5 for the compelling buying event based on these criteria
 
-Date range: projects that end in 2026, 2027, 2028, or 2029 are acceptable. You can summarize projects that end later than that or don't have a clear end date, but do not count them in the final score. Scores above 1 can only be assigned to projects that occur in North America. Scores above 1 can only be assigned to office, retail, education, manufacturing, or warehouse space. Projects ending in 2025 should receive a score of 2 or less.
-
-    • 5: The company is actively engaged in pre-bid or early-phase construction projects aligned with strategic goals. The project 
-      or program is over 100,000 sq ft, or the size is not defined but likely larger than 100,000 sq ft for the project or program 
-      overall.
-    • 4: The company is actively engaged in pre-bid or early-phase construction projects aligned with strategic goals and the project 
-      or program is under 100,000 sq ft.
-    • 3: The company is actively engaged in pre-bid or early-phase construction projects aligned with strategic goals but specific 
-      sizes are not defined.
-    • 2: Projects are nearing completion or are unrelated to company-owned facilities.
-    • 1: No relevant or direct construction projects found.
+    • 5: Compelling buying events in our target market apply and qualify as top tier enterprise opportunities
+    • 4: Compelling buying events in our target market apply but qualify as non-enterprise opportunities
+    • 3: Compelling buying events have happened but not recently or projected into the future
+    • 2: Company has relevance but no compelling buying events
+    • 1: Compnany has no relevance to our product / solution
 
 Score each project.
 
-Scoring is based on the logic of OR. Start each analysis with a score of 1. Any disqualification criteria (date, type of building, type of initiative) means that the score is a 1.
+Scoring is based on the logic of OR. Start each analysis with a score of 1. Any disqualification criteria means that the score is a 1.
 
-Then, take the highest score of all the projects.
+Then, take the highest score of all events.
 
 End your statement with a repeat of score on a new line in this format: Score: [1-5]. Strictly follow this."""
 
